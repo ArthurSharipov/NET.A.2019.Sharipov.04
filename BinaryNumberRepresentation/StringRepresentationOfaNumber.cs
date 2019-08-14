@@ -31,10 +31,10 @@ namespace BinaryNumberRepresentation
                 number = -number;
 
             int exponent = GetExponent(number);
-            double fraction = GetMantissa(number, exponent);
+            double mantissa = GetMantissa(number, exponent);
 
             stringBuilder.Append(GetExponentBinaryRepresentation(exponent));
-            stringBuilder.Append(GetMantissaBinaryRepresentation(fraction));
+            stringBuilder.Append(GetMantissaBinaryRepresentation(mantissa));
 
             return stringBuilder.ToString();
         }
@@ -56,13 +56,13 @@ namespace BinaryNumberRepresentation
         /// </summary>
         /// <param name="number"></param>
         /// <returns>Exponent in binary representation.</returns>
-        private static string GetExponentBinaryRepresentation(int number)
+        private static string GetExponentBinaryRepresentation(int exponent)
         {
             char[] bits = new char[EXPONENT];
 
             for (int i = 0; i < EXPONENT; i++)
             {
-                if ((number & 1) == 1)
+                if ((exponent & 1) == 1)
                 {
                     bits[EXPONENT - 1 - i] = POSITIVE_NUMBER;
                 }
@@ -70,7 +70,7 @@ namespace BinaryNumberRepresentation
                 {
                     bits[EXPONENT - 1 - i] = NEGATIVE_OR_ZERO_NUMBER;
                 }
-                number >>= 1;
+                exponent >>= 1;
             }
             return new string(bits);
         }
@@ -80,22 +80,22 @@ namespace BinaryNumberRepresentation
         /// </summary>
         /// <param name="fraction"></param>
         /// <returns>Mantissa in binary representation.</returns>
-        private static string GetMantissaBinaryRepresentation(double fraction)
+        private static string GetMantissaBinaryRepresentation(double mantissa)
         {
             char[] bits = new char[MANTISSA];
 
             for (int i = 0; i < bits.Length; i++)
             {
-                fraction *= 2;
+                mantissa *= 2;
 
-                if (fraction < 1)
+                if (mantissa < 1)
                 {
                     bits[i] = NEGATIVE_OR_ZERO_NUMBER;
                 }
                 else
                 {
                     bits[i] = POSITIVE_NUMBER;
-                    fraction -= 1;
+                    mantissa -= 1;
                 }
             }
             return new string(bits);
@@ -110,11 +110,11 @@ namespace BinaryNumberRepresentation
         {
             int power = 0;
 
-            double fraction = number / Math.Pow(2, power) - 1;
-            while (fraction < 0 || fraction >= 1)
+            double mantissa = number / Math.Pow(2, power) - 1;
+            while (mantissa < 0 || mantissa >= 1)
             {
                 power++;
-                fraction = number / Math.Pow(2, power) - 1;
+                mantissa = number / Math.Pow(2, power) - 1;
             }
             return power += ORDER; ;
         }
@@ -127,11 +127,11 @@ namespace BinaryNumberRepresentation
         /// <returns>Mantissa order.</returns>
         private static double GetMantissa(double number, int exponent)
         {
-            double fraction;
+            double mantissa;
 
             exponent -= ORDER;
-            fraction = number / Math.Pow(2, exponent) - 1;
-            return fraction;
+            mantissa = number / Math.Pow(2, exponent) - 1;
+            return mantissa;
         }
     }
 }
