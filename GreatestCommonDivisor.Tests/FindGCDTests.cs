@@ -7,7 +7,7 @@ namespace GreatestCommonDivisorTests
     {
         [Test]
         [TestCase(int.MaxValue, 1337, ExpectedResult = 1)]
-        [TestCase(int.MinValue, 1337, ExpectedResult = 1)]
+        [TestCase(133700000, 1337, ExpectedResult = 1337)]
         public long SearchByEuclidTest(long x, long y)
         {
             var findGCD = new FindGCD();
@@ -42,6 +42,5 @@ namespace GreatestCommonDivisorTests
             var findGCD = new FindGCD();
             return findGCD.SearchByStein(array);
         }
-
     }
 }

@@ -2,8 +2,17 @@
 
 namespace GreatestCommonDivisor
 {
+    /// <summary>
+    /// Searches for the greatest common divisor.
+    /// </summary>
     public class FindGCD
     {
+        /// <summary>
+        /// Calculates the greatest common divisor by the Euclid algorithm with two input parameters.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <returns>GCD</returns>
         public long SearchByEuclid(long x, long y)
         {
             if (x == 0 || y == 0)
@@ -22,6 +31,11 @@ namespace GreatestCommonDivisor
             return x; ;
         }
 
+        /// <summary>
+        /// Calculates the greatest common divisor by the Euclid algorithm with an array of input parameters.
+        /// </summary>
+        /// <param name="array"></param>
+        /// <returns>GCD</returns>
         public long SearchByEuclid(long[] array)
         {
             if (array == null)
@@ -39,6 +53,12 @@ namespace GreatestCommonDivisor
             return gcd;
         }
 
+        /// <summary>
+        /// Calculates the greatest common divisor by the Stein algorithm with two input parameters.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <returns>GCD</returns>
         public long SearchByStein(long x, long y)
         {
             long gcd = 0;
@@ -62,6 +82,11 @@ namespace GreatestCommonDivisor
             return gcd;
         }
 
+        /// <summary>
+        /// Calculates the greatest common divisor by the Stein algorithm with an array of input parameters.
+        /// </summary>
+        /// <param name="array"></param>
+        /// <returns>GCD</returns>
         public long SearchByStein(long[] array)
         {
             if (array == null)
